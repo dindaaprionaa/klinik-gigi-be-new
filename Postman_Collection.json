@@ -1,0 +1,357 @@
+{
+  "info": {
+    "name": "Sistem Manajemen Rumah Sakit API",
+    "description": "API Collection untuk testing sistem manajemen rumah sakit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\",\n  \"role\": \"pasien\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@rumahsakit.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/me",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/logout",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Dashboard",
+      "item": [
+        {
+          "name": "Dashboard Admin",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/dashboard",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Dokter",
+      "item": [
+        {
+          "name": "List Dokter",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/dokter",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Create Dokter",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/dokter",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama\": \"Dr. Budi\",\n  \"no_identitas\": \"1300001234567\",\n  \"spesialisasi\": \"Umum\",\n  \"no_lisensi\": \"SIP-2024-0001\",\n  \"no_telepon\": \"08123456789\",\n  \"email\": \"budi@rumahsakit.com\",\n  \"alamat\": \"Jl. Merdeka No. 1\",\n  \"jam_praktek_mulai\": \"08:00\",\n  \"jam_praktek_selesai\": \"16:00\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Dokter Detail",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/dokter/1",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Update Dokter",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/dokter/1",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nama\": \"Dr. Budi Updated\",\n  \"no_telepon\": \"08129999999\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Dokter",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/dokter/1",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Pasien",
+      "item": [
+        {
+          "name": "List Pasien",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/pasien",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Create Pasien",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/pasien",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"no_pendaftaran\": \"PDT-2024-0001\",\n  \"nama\": \"Ahmad Suryanto\",\n  \"no_identitas\": \"3500001234567\",\n  \"jenis_kelamin\": \"Laki-laki\",\n  \"tanggal_lahir\": \"1990-05-15\",\n  \"alamat\": \"Jl. Ahmad Yani No. 10\",\n  \"no_telepon\": \"08123333333\",\n  \"email\": \"ahmad@example.com\",\n  \"golongan_darah\": \"O\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Pendaftaran",
+      "item": [
+        {
+          "name": "Verifikasi Pendaftaran",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/pendaftaran/1/verifikasi",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"confirmed\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pasien - Dashboard",
+      "item": [
+        {
+          "name": "Dashboard Pasien",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/dashboard-pasien",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pasien - Pendaftaran",
+      "item": [
+        {
+          "name": "Daftar Berobat",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/daftar-berobat",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dokter_id\": 1,\n  \"jadwal_dokter_id\": 1,\n  \"tanggal_pendaftaran\": \"2024-02-15\",\n  \"jam_kunjungan\": \"09:00\",\n  \"keluhan\": \"Sakit kepala dan demam\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Riwayat Pendaftaran",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/riwayat?page=1",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Lihat Antrian Aktif",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/antrian",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dokter - Dashboard",
+      "item": [
+        {
+          "name": "Dashboard Dokter",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/dashboard-dokter",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Pasien Saya",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/pasien-saya",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dokter - Rekam Medis",
+      "item": [
+        {
+          "name": "List Rekam Medis",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/rekam-medis",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Create Rekam Medis",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/rekam-medis",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pasien_id\": 1,\n  \"dokter_id\": 1,\n  \"tanggal_kunjungan\": \"2024-02-15\",\n  \"keluhan_utama\": \"Demam tinggi\",\n  \"diagnosis\": \"Influenza\",\n  \"anamnesis\": \"Pasien mengeluh demam sejak 3 hari lalu\",\n  \"pemeriksaan_fisik\": \"T: 39.5°C, TD: 120/80\",\n  \"resep\": \"Paracetamol 3x500mg, Amoxicillin 3x500mg\"\n}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
